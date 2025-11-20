@@ -36,8 +36,7 @@ test:
     - control
 
 outputs:
-  - name: control
-    name: {{ name|lower }}
+  - name: {{ name|lower }}
     requirements:
       run:
         - control-base
