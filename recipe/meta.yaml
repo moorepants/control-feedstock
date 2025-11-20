@@ -40,7 +40,7 @@ outputs:
     name: {{ name|lower }}
     requirements:
       run:
-        - control
+        - control-base
         - slycot
     about:
       home: https://python-control.org
