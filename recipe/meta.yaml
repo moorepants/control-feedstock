@@ -4,7 +4,7 @@
 {% set sha256 = "d0cf63f6cfb68a4c8e827c26c3744d129e9777fedc9a5d86ca4740548f23a98b" %}
 
 package:
-  name: {{ name|lower }}-base
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
@@ -14,40 +14,33 @@ source:
 
 build:
   number: 1
-  noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  host:
-    - pip
-    - python {{ python_min }}
-    - setuptools
-    - setuptools-scm
   run:
     - python >={{ python_min }}
-    - numpy
-    - scipy
-    - matplotlib-base
-
-test:
-  requires:
-    - python {{ python_min }}
-  imports:
-    - control
+    - control-base
+    - slycot
 
 outputs:
-  - name: {{ name|lower }}
+  - name: {{ name|lower }}-base
+    noarch: python
+    script: {{ PYTHON }} -m pip install . --no-deps -vv
     requirements:
+      host:
+        - pip
+        - python {{ python_min }}
+        - setuptools
+        - setuptools-scm
       run:
-        - control-base
-        - slycot
-    about:
-      home: https://python-control.org
-      license: BSD-3-Clause
-      license_file: LICENSE
-      dev_url: https://github.com/python-control/python-control
-      doc_url: https://python-control.readthedocs.org/
-      summary: 'Python Control Systems Library'
+        - python >={{ python_min }}
+        - numpy
+        - scipy
+        - matplotlib-base
+    test:
+      requires:
+        - python {{ python_min }}
+      imports:
+        - control
 
 about:
   home: https://python-control.org
