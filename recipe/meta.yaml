@@ -18,7 +18,7 @@ build:
 
 outputs:
   - name: {{ name|lower }}-base
-    script: python -m pip install . --no-deps -vv
+    script: build.sh  # needs to be bash script when an output
     requirements:
       host:
         - pip
