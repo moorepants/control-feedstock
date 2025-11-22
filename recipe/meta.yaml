@@ -18,7 +18,7 @@ build:
 
 outputs:
   - name: {{ name|lower }}-base
-    script: build.sh  # needs to be bash script when an output
+    script: build_base.sh  # needs to be bash script when an output
     build:
       noarch: python
     requirements:
