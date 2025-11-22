@@ -16,12 +16,6 @@ build:
   number: 1
   noarch: python
 
-requirements:
-  run:
-    - python >={{ python_min }}
-    - control-base
-    - slycot
-
 outputs:
   - name: {{ name|lower }}-base
     script: python -m pip install . --no-deps -vv
@@ -36,6 +30,19 @@ outputs:
         - numpy
         - scipy
         - matplotlib-base
+    test:
+      requires:
+        - python {{ python_min }}
+      imports:
+        - control
+  - name: {{ name|lower }}
+    requirements:
+      host:
+        - python {{ python_min }}
+      run:
+        - python >={{ python_min }}
+        - {{ pin_subpackage('control-base', exact=True) }}
+        - slycot
     test:
       requires:
         - python {{ python_min }}
